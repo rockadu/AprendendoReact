@@ -30,8 +30,11 @@ class App extends Component {
     evento.preventDefault();
     const novoComentario = { ...this.state.novoComentario, data: new Date() };
     this.setState({comentarios : [ ...this.state.comentarios, novoComentario], novoComentario: {nome:'', mensagem:'', data: '', email: ''} });
+  }
 
-
+  removerComentario = comentario => {
+    let lista = this.state.comentarios.filter(c => c !== comentario);
+    this.setState({ comentarios: lista});
   }
 
   digitacao = evento => {
@@ -44,7 +47,7 @@ class App extends Component {
         <h1>Meu Projeto</h1>
 
         {this.state.comentarios.map((comentario, indice) => (
-          <Comentario key={indice} nome={comentario.nome} mail={comentario.email} data={comentario.data}>
+          <Comentario key={indice} nome={comentario.nome} mail={comentario.email} data={comentario.data} onRemove={this.removerComentario.bind(this, comentario)}>
             {comentario.mensagem}
           </Comentario>
         ))}
