@@ -1,14 +1,24 @@
 import React from 'react';
 import './comentario.css';
+import imagemUsuario from '../img/avatar.png';
 
 //JSX
 const Comentario = props => {
+    const estilo = {
+        color: 'red',
+        padding: '10px',
+        fontSize: '30px'
+    }
+
     return <div className="Comentario">
-        <h2>Nome: {props.nome}</h2>
-        <p>{props.mail}</p>
-        <p>{props.children}</p>
-        <p>{props.data.toString()}</p>
-        <button onClick={props.onRemove}>&times;</button>
+        <img src={imagemUsuario} alt="avatar" className="avatar"></img>
+        <div className="conteudo">
+            <h2 className="nome">Nome: {props.nome}</h2>
+            <p className="mail">{props.mail}</p>
+            <p className="menssage">{props.children}</p>
+            <p className="data">{props.data.toString()}</p>
+            <button onClick={props.onRemove}>&times;</button>
+        </div>
     </div>
 };
 
